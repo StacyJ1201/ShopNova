@@ -1,19 +1,27 @@
 # Environment variables
 .env
 .env.local
-.env.development
-.env.test
-.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+/backend/.env
 
 # Dependencies
 node_modules/
 /frontend/node_modules/
 /backend/node_modules/
+/.pnp
+.pnp.js
 
 # Build files
 /frontend/build/
 /frontend/dist/
 /backend/dist/
+
+# Testing
+/coverage
+/frontend/coverage
+/backend/coverage
 
 # Logs
 logs
@@ -21,24 +29,30 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
-# Runtime data
-.DS_Store
+# Editor directories and files
 .idea/
 .vscode/
-*.sublime-project
-*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
 
-# Coverage directory
-coverage/
+# Redis dump files
+dump.rdb
 
-# AWS
+# AWS files
 .aws/
 aws-credentials.json
 
-# Redis dump
-dump.rdb
-
 # Temporary files
-tmp/
+/tmp
 .tmp/
+.temp/
+
+# System Files
+.DS_Store
+Thumbs.db

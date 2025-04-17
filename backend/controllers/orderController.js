@@ -4,6 +4,9 @@ import Order from "../models/Order.js";
 // API route to fetch all orders
 export const getAllOrders = async (req, res) => {
   try {
+    // search for all orders
+    const orders = await Order.find({});
+
     res.json({
       success: true,
       message: "All Orders fetched successfully",
@@ -29,6 +32,9 @@ export const getOrderById = async (req, res) => {
         message: "Invalid order ID",
       });
     }
+
+    // search for order by ID
+    const order = await Order.findById(id);
 
     // For now, return placeholder with the provided ID
     res.json({
@@ -86,8 +92,11 @@ export const createOrder = async (req, res) => {
       // user: req.user._id,
     });
 
+    // Save the order to the database
+    await order.save();
+
     // Return the created order
-    res.json({
+    res.status(201).json({
       success: true,
       message: "Order created successfully",
       data: order,
@@ -113,6 +122,12 @@ export const updateOrder = async (req, res) => {
         message: "Invalid order ID",
       });
     }
+
+    // update the order
+    const order = await Order.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     // For now, return placeholder with the provided ID
     res.json({
@@ -141,6 +156,9 @@ export const deleteOrder = async (req, res) => {
         message: "Invalid order ID",
       });
     }
+
+    // Delete the order
+    await Order.findByIdAndDelete(id);
 
     // For now, return placeholder with the provided ID
     res.json({

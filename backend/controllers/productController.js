@@ -8,6 +8,7 @@ export const getAllProducts = async (req, res) => {
     res.json({
       success: true,
       message: "All Products fetched successfully",
+      data: products,
     });
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -42,7 +43,7 @@ export const getProductById = async (req, res) => {
     res.json({
       success: true,
       message: "Product id: " + id + " fetched successfully",
-      data: id,
+      data: product,
     });
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -101,7 +102,7 @@ export const deleteProduct = async (req, res) => {
     }
 
     // Delete the product
-    await Product.findByIdAndDelete(id);
+    const product = await Product.findByIdAndDelete(id);
 
     // Check if the product exists
     if (!product) {
